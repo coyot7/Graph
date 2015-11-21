@@ -1,0 +1,12 @@
+C:\Projekty\Test2\bin\Debug\Test2.exe.config
+C:\Projekty\Test2\bin\Debug\Test2.exe
+C:\Projekty\Test2\bin\Debug\Test2.pdb
+C:\Projekty\Test2\bin\Debug\Microsoft.Msagl.dll
+C:\Projekty\Test2\bin\Debug\Microsoft.Msagl.Drawing.dll
+C:\Projekty\Test2\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+C:\Projekty\Test2\obj\Debug\Test2.Form1.resources
+C:\Projekty\Test2\obj\Debug\Test2.Properties.Resources.resources
+C:\Projekty\Test2\obj\Debug\Test2.csproj.GenerateResource.Cache
+C:\Projekty\Test2\obj\Debug\Test2.exe
+C:\Projekty\Test2\obj\Debug\Test2.pdb
+C:\Projekty\Test2\obj\Debug\Test2.csprojResolveAssemblyReference.cache
