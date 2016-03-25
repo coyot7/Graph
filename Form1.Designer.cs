@@ -31,6 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.wczytaj = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panel1
@@ -45,7 +46,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(5, 12);
+            this.button1.Location = new System.Drawing.Point(5, 52);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -55,7 +56,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(5, 42);
+            this.button2.Location = new System.Drawing.Point(5, 81);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -63,16 +64,27 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // wczytaj
+            // 
+            this.wczytaj.Location = new System.Drawing.Point(5, 13);
+            this.wczytaj.Name = "wczytaj";
+            this.wczytaj.Size = new System.Drawing.Size(75, 23);
+            this.wczytaj.TabIndex = 3;
+            this.wczytaj.Text = "Wczytaj";
+            this.wczytaj.UseVisualStyleBackColor = true;
+            this.wczytaj.Click += new System.EventHandler(this.wczytaj_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 348);
+            this.Controls.Add(this.wczytaj);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Graph";
             this.ResumeLayout(false);
 
         }
@@ -85,6 +97,7 @@
         public Microsoft.Msagl.GraphViewerGdi.GViewer viewer;
         public Microsoft.Msagl.Drawing.Graph graph;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button wczytaj;
     }
 }
 
