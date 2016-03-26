@@ -154,5 +154,21 @@ namespace Aplikacja
 
             viewer.Graph = graph;
         }
+
+        private void zoomPlus_Click(object sender, EventArgs e)
+        {
+            viewer.ZoomInPressed();
+        }
+
+        private void zoomMinus_Click(object sender, EventArgs e)
+        {
+            viewer.ZoomOutPressed();
+        }
+
+        private void normal_Click(object sender, EventArgs e)
+        {
+            viewer.ZoomF = 1.0;
+            viewer.Refresh();
+        }
     }
 }

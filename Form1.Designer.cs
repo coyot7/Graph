@@ -32,6 +32,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.wczytaj = new System.Windows.Forms.Button();
+            this.zoomPlus = new System.Windows.Forms.Button();
+            this.zoomMinus = new System.Windows.Forms.Button();
+            this.normal = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panel1
@@ -74,11 +77,44 @@
             this.wczytaj.UseVisualStyleBackColor = true;
             this.wczytaj.Click += new System.EventHandler(this.wczytaj_Click);
             // 
+            // zoomPlus
+            // 
+            this.zoomPlus.Location = new System.Drawing.Point(5, 258);
+            this.zoomPlus.Name = "zoomPlus";
+            this.zoomPlus.Size = new System.Drawing.Size(75, 23);
+            this.zoomPlus.TabIndex = 4;
+            this.zoomPlus.Text = "Zoom +";
+            this.zoomPlus.UseVisualStyleBackColor = true;
+            this.zoomPlus.Click += new System.EventHandler(this.zoomPlus_Click);
+            // 
+            // zoomMinus
+            // 
+            this.zoomMinus.Location = new System.Drawing.Point(5, 287);
+            this.zoomMinus.Name = "zoomMinus";
+            this.zoomMinus.Size = new System.Drawing.Size(75, 23);
+            this.zoomMinus.TabIndex = 5;
+            this.zoomMinus.Text = "Zoom -";
+            this.zoomMinus.UseVisualStyleBackColor = true;
+            this.zoomMinus.Click += new System.EventHandler(this.zoomMinus_Click);
+            // 
+            // normal
+            // 
+            this.normal.Location = new System.Drawing.Point(5, 317);
+            this.normal.Name = "normal";
+            this.normal.Size = new System.Drawing.Size(75, 23);
+            this.normal.TabIndex = 6;
+            this.normal.Text = "Normal";
+            this.normal.UseVisualStyleBackColor = true;
+            this.normal.Click += new System.EventHandler(this.normal_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 348);
+            this.Controls.Add(this.normal);
+            this.Controls.Add(this.zoomMinus);
+            this.Controls.Add(this.zoomPlus);
             this.Controls.Add(this.wczytaj);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -98,6 +134,9 @@
         public Microsoft.Msagl.Drawing.Graph graph;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button wczytaj;
+        private System.Windows.Forms.Button zoomPlus;
+        private System.Windows.Forms.Button zoomMinus;
+        private System.Windows.Forms.Button normal;
     }
 }
 
