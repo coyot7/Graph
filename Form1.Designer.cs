@@ -35,6 +35,7 @@
             this.zoomPlus = new System.Windows.Forms.Button();
             this.zoomMinus = new System.Windows.Forms.Button();
             this.normal = new System.Windows.Forms.Button();
+            this.Next = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panel1
@@ -49,7 +50,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(5, 52);
+            this.button1.Location = new System.Drawing.Point(5, 107);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -59,7 +60,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(5, 81);
+            this.button2.Location = new System.Drawing.Point(5, 136);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -107,11 +108,22 @@
             this.normal.UseVisualStyleBackColor = true;
             this.normal.Click += new System.EventHandler(this.normal_Click);
             // 
+            // Next
+            // 
+            this.Next.Location = new System.Drawing.Point(5, 43);
+            this.Next.Name = "Next";
+            this.Next.Size = new System.Drawing.Size(75, 23);
+            this.Next.TabIndex = 7;
+            this.Next.Text = "Next";
+            this.Next.UseVisualStyleBackColor = true;
+            this.Next.Click += new System.EventHandler(this.Next_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 348);
+            this.Controls.Add(this.Next);
             this.Controls.Add(this.normal);
             this.Controls.Add(this.zoomMinus);
             this.Controls.Add(this.zoomPlus);
@@ -137,6 +149,7 @@
         private System.Windows.Forms.Button zoomPlus;
         private System.Windows.Forms.Button zoomMinus;
         private System.Windows.Forms.Button normal;
+        private System.Windows.Forms.Button Next;
     }
 }
 

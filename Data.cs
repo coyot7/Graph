@@ -42,5 +42,28 @@ namespace Aplikacja
         {
             return this.tab[row,col];
         }
+
+        public List<int>[] ToList()
+        {
+            List<int>[] listaTablic = new List<int>[col];
+
+            for (int i = 0; i < row; i++)
+            {
+                {
+                    listaTablic[i] = new List<int>();
+                }
+            }
+
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    {
+                        listaTablic[i].Add(tab[j,i]);
+                    }
+                }
+            }
+            return listaTablic;
+        }
     }
 }

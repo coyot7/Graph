@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Microsoft.Msagl;
 
 namespace Aplikacja
 {
@@ -16,13 +17,14 @@ namespace Aplikacja
         public Form1()
         {
             InitializeComponent();
-
+            
             viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             viewer.ToolBarIsVisible = false;
             viewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Controls.Add(viewer);
+            //graph = new Microsoft.Msagl.Drawing.Graph("graph");
             //create a graph object 
-            Data macierz;
+            //  Data macierz;
 
         }
 
@@ -75,7 +77,7 @@ namespace Aplikacja
                             kolumny = sr.ReadLine().Length;
                             wiersze++;
                         } while (!sr.EndOfStream);
-                        
+
                         sr.DiscardBufferedData(); //czyszczenie bufora
                         sr.BaseStream.Seek(0, SeekOrigin.Begin); //powrót karetki odczytu pliku do początku
                         int wierszBledu = 1;
@@ -83,11 +85,11 @@ namespace Aplikacja
                         {
                             kolumny = sr.ReadLine().Length;
                             if (kolumny > 10)
-                                throw new InvalidOptionException("Macierz nie może być większa niż 10x10",sr);
+                                throw new InvalidOptionException("Macierz nie może być większa niż 10x10", sr);
                             if (kolumny != wiersze)
                             {
                                 throw new InvalidOptionException("Macierz nie jest kwadratowa\n" +
-                                "Błąd w wierszu: " + wierszBledu, sr);   
+                                "Błąd w wierszu: " + wierszBledu, sr);
                             }
                             wierszBledu++;
                         } while (!sr.EndOfStream);
@@ -95,7 +97,7 @@ namespace Aplikacja
                         sr.DiscardBufferedData(); //czyszczenie bufora
                         sr.BaseStream.Seek(0, SeekOrigin.Begin); //powrót karetki odczytu pliku do początku
 
-                        macierz = new Data(wiersze, kolumny);
+                        this.macierz = new Data(wiersze, kolumny);
                         int liczba = 0;
                         for (int i = 0; i < wiersze; i++)
                         {
@@ -113,16 +115,28 @@ namespace Aplikacja
                                     macierz.Write(i, j, liczba);
                                 }
                                 else
-                                    throw new InvalidOptionException("Macierz musi zawierać liczby 0 lub 1.\n", sr);   
+                                    throw new InvalidOptionException("Macierz musi zawierać liczby 0 lub 1.\n", sr);
                             }
                         }
-                            sr.Close();
+                        sr.Close();
                     }
                 }
                 MessageBox.Show("Liczba wierszy: " + wiersze.ToString() + "\n" + //do testow
                     "Liczba kolumn: " + kolumny);
 
-                Draw(macierz);
+                graph = new Microsoft.Msagl.Drawing.Graph("graph");
+
+                for (int i = 0; i < macierz.RowGet; i++)
+                {
+                    for (int j = 0; j < macierz.ColGet; j++)
+                    {
+                        if (macierz.Read(i, j) == 1)
+                        {
+                            graph.AddEdge((i + 1).ToString(), (j + 1).ToString());
+                        }
+                    }
+                }
+                viewer.Graph = graph;
 
             }
             catch (InvalidOptionException ex)
@@ -137,23 +151,7 @@ namespace Aplikacja
 
         public Data macierz { get; set; }
 
-        public void Draw(Data macierz)
-        {
-            graph = new Microsoft.Msagl.Drawing.Graph("graph");
 
-            for (int i = 0; i < macierz.RowGet; i++)
-            {
-                for (int j = 0; j < macierz.ColGet; j++)
-                {
-                    if (macierz.Read(i,j) == 1)
-                    {
-                        graph.AddEdge((i+1).ToString(), (j+1).ToString());
-                    }
-                }
-            }
-
-            viewer.Graph = graph;
-        }
 
         private void zoomPlus_Click(object sender, EventArgs e)
         {
@@ -168,6 +166,44 @@ namespace Aplikacja
         private void normal_Click(object sender, EventArgs e)
         {
             viewer.ZoomF = 1.0;
+            viewer.Refresh();
+        }
+
+        private void Next_Click(object sender, EventArgs e)
+        {
+            
+            this.graph.Edges.Clear();
+            
+            viewer.Graph = graph;
+            viewer.Refresh();
+            
+            //for (int i = 0; i < macierz.RowGet; i++)
+            //{
+            //    for (int j = 0; j < macierz.ColGet; j++)
+            //    {
+            //        if (macierz.Read(j, i) == 1)
+            //        {
+            //            graph.AddEdge((i + 1).ToString(), (j + 1).ToString());
+            //        }
+            //    }
+            //} działa prawidłowo dla macierzy.
+
+            List<int>[] lista = macierz.ToList();
+            for (int i = 0; i < macierz.RowGet; i++)
+            {
+                int licznik = 1;
+                foreach (int element in lista[i])
+                {
+                    if (element == 1)
+                    {
+                        graph.AddEdge((i + 1).ToString(), licznik.ToString());
+
+                    }
+                    licznik++;
+                }
+            }
+
+            viewer.Graph = graph;
             viewer.Refresh();
         }
     }
