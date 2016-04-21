@@ -23,6 +23,7 @@ namespace Aplikacja
         public bool[] sssvis = new bool[max_n];
         public int n;
         public string[] grafSilny = new string[20];
+        public Microsoft.Msagl.Drawing.Color[] tablicaKolorow = new Microsoft.Msagl.Drawing.Color[20]; 
 
         public int licznikNextButton = 0;
         public List<int>[] lista;
@@ -52,7 +53,9 @@ namespace Aplikacja
                 }
             }
 
-
+            tablicaKolorow[0] = Microsoft.Msagl.Drawing.Color.Red;
+            tablicaKolorow[1] = Microsoft.Msagl.Drawing.Color.Green;
+            tablicaKolorow[2] = Microsoft.Msagl.Drawing.Color.Blue;
 
 
 
@@ -227,7 +230,6 @@ namespace Aplikacja
 
         private void Next_Click(object sender, EventArgs e)
         {
-            //lista = macierz.ToList();
             listaTransponowana = macierz.ToListTransponowany(lista);
 
             if (licznikNextButton == 0)
@@ -277,7 +279,7 @@ namespace Aplikacja
                 viewer.Refresh();
                 licznikNextButton++;
             }
-            else if (licznikNextButton == 1)
+      else if (licznikNextButton == 1)
             {
                 n = macierz.RowGet;
 
@@ -307,18 +309,26 @@ namespace Aplikacja
                         ++ns;
                     }
                 }
-                //MessageBox.Show("Liczba sss: " + ns);
-                //for (int i = 0; i < ns; ++i)
-                //{
-                //    MessageBox.Show("Skladowa d: " + (i + 1));
-                //    for (int v = 0; v < n; ++v)
-                //        if (sss[v] == i)
-                //        {
-                //            MessageBox.Show("Wierzchołek " + (v + 1));
-                //        }
-                //}
                 //#######################################
-               
+                //Kolorki
+                
+                for (int i = 0; i < ns; ++i)
+                {
+                    for (int v = 0; v < n; ++v)
+                        if (sss[v] == i)
+                        {
+                            Microsoft.Msagl.Drawing.Node c = graph.FindNode((v+1).ToString());
+                            c.Attr.FillColor = tablicaKolorow[i];
+                            
+                            viewer.Graph = graph;
+                        }
+                }
+                licznikNextButton++;
+                //#######################################
+               //Rysowanie silnie spójnych składowych
+            }
+       else if (licznikNextButton == 2)
+            {
                 this.graph.Edges.Clear();
                 this.graph.NodeMap.Clear();
                 viewer.Graph = graph;
@@ -326,15 +336,12 @@ namespace Aplikacja
 
                 for (int i = 0; i < ns; ++i)
                 {
-                    //string wyrazenie = null;
 
                     for (int v = 0; v < n; ++v)
                         if (sss[v] == i)
                         {
                             grafSilny[i] += (v + 1).ToString() + ",";
                         }
-
-                   // graph.AddEdge((i + 1).ToString(), wyrazenie);
                 }
                 for (int i = 0; i < 19; i++)
                 {
@@ -352,8 +359,7 @@ namespace Aplikacja
         public void sss_dfs(int v)
         {
             sssvis[v] = true;
-            
-            //for (int i = 0; i < macierz.RowGet; i++)
+           
             {
                 foreach(int element in lista[v])
                 {
@@ -369,7 +375,6 @@ namespace Aplikacja
         {
             sss[v] = ns;
             sssvis[v] = true;
-            //for (int i = 0; i < macierz.RowGet; i++)
             {
                 foreach (int element in listaTransponowana[v])
                 {
